@@ -1,7 +1,7 @@
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-const bodyParser = require('body-parser');
+import express from 'express';
+import morgan from 'morgan';
+import path from 'path';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -19,11 +19,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-// });
-
 app.route('/api/game/:id')
   .all(function(req, res, next) {
     // runs for all HTTP verbs first
@@ -38,9 +33,24 @@ app.route('/api/game/:id')
     });
   })
   .post((req, res) => {
+
+    // Parse response
+
+    // Validate it
+
+    // Check mongoose if it exists?
+
+    // Save or update
+
+    // Return the model in the response
+
     res.status(201).json({
       game: {
-        title: req.body.title
+        title: req.body.title,
+        developer: req.body.developer,
+        publisher: req.body.publisher,
+        releaseDate: req.body.releaseDate,
+        description: req.body.description
       }
     });
   });
