@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "concurrently \"yarn run server\" \"yarn run client\"",
-    "server": "cd src/server && node index.js",
+    "server": "cd server && node index.js",
     "client": "react-scripts start"
   }
 }
