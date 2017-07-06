@@ -2,7 +2,13 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-var express = require('express');
+const express = require('express');
+
+// Models
+const Game = require('./models/Game');
+
+// Mongoose Setup
+// mongoose.Promise = global.Promise;
 
 const app = express();
 
@@ -34,7 +40,6 @@ app.route('/api/game/:id')
     });
   })
   .post((req, res) => {
-
     mongoose.connect('mongodb://localhost/game-collection');
     const db = mongoose.connection;
 
@@ -49,26 +54,6 @@ app.route('/api/game/:id')
       });
     });
     db.once('open', function() {
-      // we're connected!
-
-      //Define a schema
-
-      // TODO: Can you import this from the Node package?
-      const Schema = mongoose.Schema;
-
-      const GameSchema = new Schema({
-        idea           : Schema.Types.ObjectId,
-        title          : String,
-        developer      : Date,
-        publisher      : String,
-        releaseDate    : Date,
-        description    : String,
-        created        : Date,
-        edited         : Date
-      });
-
-      const Game = mongoose.model('Game', GameSchema);
-
       // Parse response
       const postedGame = {
         title: req.body.title,
@@ -84,15 +69,47 @@ app.route('/api/game/:id')
 
       gameInstance.save(function (err, gameInstance) {
         if (err) {
+          // TODO: Actual error parsing
+          console.log(err);
+          res.status(500).json({
+            error: true,
+            message: 'We were unable to save your game. Please try again.'
+          })
+        } else {
+          res.status(201).json({
+            game: gameInstance
+          });
+        }
+      });
+    });
+  });
+
+app.route('/api/games')
+  .get((req, res) => {
+    // TODO: What's the best practice here?
+    mongoose.connect('mongodb://localhost/game-collection');
+    const db = mongoose.connection;
+
+    // Error out response on error
+    db.on('error', () => {
+      console.error.bind(console, 'connection error:');
+      res.status(500).json({
+        error: true,
+        message: 'connection error'
+      });
+    });
+    db.once('open', function() {
+      Game.find({}, function(err, games) {
+        if (err) {
           res.status(500).json({
             error: true,
             message: err
-          })
+          });
+        } else {
+          res.status(201).json({
+            games: games
+          });
         }
-
-        res.status(201).json({
-          game: gameInstance
-        });
       });
     });
   });
