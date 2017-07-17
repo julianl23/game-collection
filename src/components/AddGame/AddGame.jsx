@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import cn from 'classnames';
 
 class AddGame extends Component {
@@ -28,8 +29,10 @@ class AddGame extends Component {
     e.preventDefault();
     axios.post('/api/game/add', this.state)
       .then((res) => {
-        // TODO: This should redirect you to the game's actual page
-        console.log(`game added! ${res}`)
+        // TODO: This should push to a different route depending on the
+        // type of user who is adding a game.
+        // /admin for admins, /game/:id otherwise?
+        this.props.history.push('/admin');
       });
   }
 
@@ -67,28 +70,9 @@ class AddGame extends Component {
 
           <input type="submit" value="Add game" />
         </form>
-
-        <div>
-          <h2>Test bed</h2>
-          <p>
-            Title: { this.state.title }
-          </p>
-          <p>
-            Developer: { this.state.developer }
-          </p>
-          <p>
-            Publisher: { this.state.publisher }
-          </p>
-          <p>
-            Release Date: { this.state.releaseDate }
-          </p>
-          <p>
-            Description: { this.state.description }
-          </p>
-        </div>
       </div>
     );
   }
 }
 
-export default AddGame;
+export default withRouter(AddGame);

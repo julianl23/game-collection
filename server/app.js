@@ -9,6 +9,10 @@ const Game = require('./models/Game');
 
 // Mongoose Setup
 // mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/game-collection', function(error) {
+  console.log(error);
+});
+// const db = mongoose.connection;
 
 const app = express();
 
@@ -40,20 +44,17 @@ app.route('/api/game/:id')
     });
   })
   .post((req, res) => {
-    mongoose.connect('mongodb://localhost/game-collection');
-    const db = mongoose.connection;
-
     // TODO: Is there a promise architecture that can be used here?
 
     // Error out response on error
-    db.on('error', () => {
-      console.error.bind(console, 'connection error:');
-      res.status(500).json({
-        error: true,
-        message: 'connection error'
-      });
-    });
-    db.once('open', function() {
+    // db.on('error', () => {
+    //   console.error.bind(console, 'connection error:');
+    //   res.status(500).json({
+    //     error: true,
+    //     message: 'connection error'
+    //   });
+    // });
+    // db.once('open', function() {
       // Parse response
       const postedGame = {
         title: req.body.title,
@@ -81,24 +82,20 @@ app.route('/api/game/:id')
           });
         }
       });
-    });
+    // });
   });
 
 app.route('/api/games')
   .get((req, res) => {
-    // TODO: What's the best practice here?
-    mongoose.connect('mongodb://localhost/game-collection');
-    const db = mongoose.connection;
-
     // Error out response on error
-    db.on('error', () => {
-      console.error.bind(console, 'connection error:');
-      res.status(500).json({
-        error: true,
-        message: 'connection error'
-      });
-    });
-    db.once('open', function() {
+    // db.on('error', () => {
+    //   console.error.bind(console, 'connection error:');
+    //   res.status(500).json({
+    //     error: true,
+    //     message: 'connection error'
+    //   });
+    // });
+    // db.once('open', function() {
       Game.find({}, function(err, games) {
         if (err) {
           res.status(500).json({
@@ -111,7 +108,7 @@ app.route('/api/games')
           });
         }
       });
-    });
+    // });
   });
 
 // Always return the main index.html, so react-router render the route in the client

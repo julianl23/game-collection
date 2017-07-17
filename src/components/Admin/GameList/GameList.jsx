@@ -14,7 +14,6 @@ class GameList extends Component {
 
     axios.get('/api/games')
       .then((res) => {
-        console.log(res);
         this.setState({
           games: res.data.games
         });
@@ -23,16 +22,15 @@ class GameList extends Component {
 
   renderGameList() {
     const games = this.state.games.map((game) => {
-      console.log(game);
       return (
-        <tr>
+        <tr key={game._id}>
           <td className="game-title">
-            <Link to={`/game/${game.id}`}>{game.title}</Link>
+            <Link to={`/game/${game._id}`}>{game.title}</Link>
           </td>
           <td className="game-developer">{game.developer}</td>
           <td className="game-publisher">{game.publisher}</td>
           <td>
-            <button onClick={(e) => this.deleteGame}></button>
+            <button onClick={(e) => this.deleteGame}>Delete Game</button>
           </td>
         </tr>
       )
@@ -50,6 +48,11 @@ class GameList extends Component {
         </thead>
         <tbody>
           { games }
+          <tr>
+            <td colSpan="4">
+              <Link to="/game/add">+ Add New Game</Link>
+            </td>
+          </tr>
         </tbody>
       </table>
     );
