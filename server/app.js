@@ -10,7 +10,9 @@ const Game = require('./models/Game');
 // Mongoose Setup
 // mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/game-collection', function(error) {
-  console.log(error);
+  if (error) {
+    console.log(error);
+  }
 });
 // const db = mongoose.connection;
 
@@ -37,9 +39,16 @@ app.route('/api/game/:id')
     next();
   })
   .get((req, res) => {
-    res.json({
-      game: {
-        title: req.params.id
+    Game.findById(req.params.id, function(err, game) {
+      if (err) {
+        res.status(500).json({
+          error: true,
+          message: err
+        });
+      } else {
+        res.json({
+          game: game
+        });
       }
     });
   })
@@ -83,6 +92,22 @@ app.route('/api/game/:id')
         }
       });
     // });
+  })
+  .delete((req, res) => {
+    Game.findByIdAndRemove(req.params.id, function(err) {
+      if (err) {
+        console.log(err);
+        res.status(500).json({
+          error: true,
+          message: 'We were unable to delete this game. Please try again.'
+        })
+      } else {
+        res.status(200).json({
+          success: true,
+          message: 'deleted'
+        });
+      }
+    });
   });
 
 app.route('/api/games')
@@ -103,7 +128,7 @@ app.route('/api/games')
             message: err
           });
         } else {
-          res.status(201).json({
+          res.status(200).json({
             games: games
           });
         }

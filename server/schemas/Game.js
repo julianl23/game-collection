@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GameSchema = new Schema({
-  id             : Schema.Types.ObjectId,
+  // _id            : Schema.Types.ObjectId,
   title          : String,
   developer      : String,
   publisher      : String,

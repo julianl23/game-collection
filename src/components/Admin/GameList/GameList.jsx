@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -11,11 +12,26 @@ class GameList extends Component {
     };
 
     this.renderGameList = this.renderGameList.bind(this);
+    this.deleteGame = this.deleteGame.bind(this);
 
+    // TODO: Move this to an api abstraction
     axios.get('/api/games')
       .then((res) => {
         this.setState({
           games: res.data.games
+        });
+      });
+  }
+
+  deleteGame(id) {
+    // TODO: Move this to an api abstraction
+    axios.delete(`api/game/${id}`)
+      .then(() => {
+        const updatedGames = _.reject(this.state.games, {
+          _id: id
+        });
+        this.setState({
+          games: updatedGames
         });
       });
   }
@@ -30,7 +46,7 @@ class GameList extends Component {
           <td className="game-developer">{game.developer}</td>
           <td className="game-publisher">{game.publisher}</td>
           <td>
-            <button onClick={(e) => this.deleteGame}>Delete Game</button>
+            <button onClick={(e) => this.deleteGame(game._id)}>Delete Game</button>
           </td>
         </tr>
       )

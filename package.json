@@ -8,6 +8,8 @@
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
     "concurrently": "^3.5.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "mongodb": "^2.2.29",
     "mongoose": "^4.11.0",
     "morgan": "^1.8.2",
