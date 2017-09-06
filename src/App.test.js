@@ -1,8 +1,9 @@
+import { mount } from 'enzyme';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import 'jsdom-global/register';
 import App from './App';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  const wrapper = mount(<App />);
+  expect(wrapper.find('.App').length).toBe(1);
 });
