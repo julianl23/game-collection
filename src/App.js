@@ -4,8 +4,10 @@ import AddEditGame from './components/Game/AddEditGame';
 import Admin from './components/Admin';
 import Dashboard from './components/Dashboard';
 import Game from './components/Game/Game';
+import Login from './components/Login';
 import MainNavigation from './components/MainNavigation';
 import NotFound from './components/NotFound';
+import Registration from './components/Registration';
 import Welcome from './components/Welcome';
 // import logo from './logo.svg';
 import './App.css';
@@ -29,6 +31,10 @@ class App extends Component {
 
               {/* Admin */}
               <Route exact path="/admin" component={Admin} />
+
+              {/* User */}
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Registration} />
 
               <Route component={NotFound} />
             </Switch>

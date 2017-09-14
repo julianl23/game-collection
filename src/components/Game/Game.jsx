@@ -14,8 +14,6 @@ class Game extends Component {
   constructor() {
     super();
     this.state = {};
-
-    this.renderGameDetails = this.renderGameDetails.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +30,7 @@ class Game extends Component {
   //   return this.state.game._id !== nextState.game._id ? true : false;
   // }
 
-  renderGameDetails() {
+  renderGameDetails = () => {
     const game = this.state.game;
 
     if (!game) {
