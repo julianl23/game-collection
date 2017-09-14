@@ -1,19 +1,15 @@
 const get = (req, res) => {
-  if (!req.user) {
-    res.status(200).json({
-      entities: {
-        user: null
-      }
-    });
+  let user = null;
+
+  if (req.user) {
+    user = req.user
   }
 
-  res.status(200).json({
+  res.json({
     entities: {
-      user: {
-        ...req.user
-      }
+      user
     }
-  });
+  })
 };
 
 module.exports = get;
