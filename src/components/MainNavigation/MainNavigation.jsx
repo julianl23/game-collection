@@ -25,14 +25,28 @@ class MainNavigation extends Component {
       .catch(() => {})
   }
 
-  renderLoggedInUser = () => {
+  renderLoggedInContent = () => {
     const user = this.state.user;
     if (!user) {
       return;
     }
 
     return (
-      <Link to="/" className={cn('admin-link')}>{ user.username }</Link>
+      <span className={cn('logged-in')}>
+        <Link to="/" className={cn('admin-link')}>{ user.username }</Link>
+        <Link to="/admin" className={cn('admin-link')}>Admin</Link>
+        <Link to="/">Log out</Link>
+      </span>
+    );
+  }
+
+  renderLoggedOutContent() {
+    return (
+      <span className={cn('logged-out')}>
+        <Link to="/login" className={cn('admin-link')}>Log in</Link>
+        /
+        <Link to="/register" className={cn('admin-link')}>Register</Link>
+      </span>
     );
   }
   
@@ -40,8 +54,7 @@ class MainNavigation extends Component {
     return (
       <nav className={cn('main-nav')}>
         <Link to="/">Home</Link>
-        { this.renderLoggedInUser() }
-        <Link to="/admin" className={cn('admin-link')}>Admin</Link>
+        { this.state.user ? this.renderLoggedInContent() : this.renderLoggedOutContent }
       </nav>
     );
   }
