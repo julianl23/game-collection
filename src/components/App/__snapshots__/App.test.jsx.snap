@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+Array [
+  <header>
+    <h1>
+      Game Collection
+    </h1>
+  </header>,
+  <section>
+    This is where the content lives get you one
+  </section>,
+  <footer>
+    © 
+    2018
+     Julian Lord
+  </footer>,
+]
+`;
