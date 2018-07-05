@@ -60,6 +60,7 @@ Array [
   grid-gap: 16px;
   grid-auto-rows: minmax(100px,auto);
   min-height: 90vh;
+  padding: 25px;
 }
 
 .c1 {

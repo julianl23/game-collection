@@ -1,10 +1,12 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
-import Login from "./Login";
+import TextField from "./TextField";
 
-describe("Login", () => {
+describe("TextField", () => {
   it("renders correctly", () => {
-    const instance = TestRenderer.create(<Login />);
+    const instance = TestRenderer.create(
+      <TextField id="hello" labelText="Hello" />
+    );
     expect(instance.toJSON()).toMatchSnapshot();
   });
 });

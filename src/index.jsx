@@ -3,5 +3,4 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 
 const app = document.getElementById("app");
-
-ReactDOM.render(<App />, app);
+export default ReactDOM.render(<App />, app);
