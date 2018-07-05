@@ -1,10 +1,10 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
-import Header from "./Header";
+import MainContent from "./MainContent";
 
-describe("Header", () => {
+describe("MainContent", () => {
   it("renders correctly", () => {
-    const instance = TestRenderer.create(<Header />);
+    const instance = TestRenderer.create(<MainContent />);
     expect(instance.toJSON()).toMatchSnapshot();
   });
 });

@@ -1,16 +1,21 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
 import Header from "../Header";
+import MainContent from "../MainContent";
+import Footer from "../Footer";
+import Theme from "../../themes/theme";
 
-const App = () => {
-  const currentYear = new Date().getFullYear();
+// Injext globals into styled components
+import "../../themes/globals";
 
-  return (
+const App = () => (
+  <ThemeProvider theme={Theme}>
     <React.Fragment>
       <Header />
-      <section>whatThis is where the content lives get you one</section>
-      <footer>&copy; {currentYear} Julian Lord</footer>
+      <MainContent />
+      <Footer />
     </React.Fragment>
-  );
-};
+  </ThemeProvider>
+);
 
 export default App;

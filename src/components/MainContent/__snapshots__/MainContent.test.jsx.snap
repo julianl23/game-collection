@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainContent renders correctly 1`] = `
+.c0 {
+  display: grid;
+  grid-template-columns: repeat(4);
+  grid-gap: 16px;
+  grid-auto-rows: minmax(100px,auto);
+  min-height: 90vh;
+}
+
+.c1 {
+  grid-column: 1 / 4;
+  grid-row: 1;
+}
+
+<section
+  className="c0"
+>
+  <section
+    className="c1"
+  >
+    Whoa! Main Content
+  </section>
+</section>
+`;

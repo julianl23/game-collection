@@ -1,10 +1,10 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
-import Header from "./Header";
+import Gamepad from "./Gamepad";
 
-describe("Header", () => {
+describe("Gamepad", () => {
   it("renders correctly", () => {
-    const instance = TestRenderer.create(<Header />);
+    const instance = TestRenderer.create(<Gamepad />);
     expect(instance.toJSON()).toMatchSnapshot();
   });
 });

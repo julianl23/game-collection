@@ -12,12 +12,15 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "jest"],
+  "plugins": ["react", "jest", "prettier"],
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/forbid-prop-types": "off",
+    "prettier/prettier": "error",
+    "jsx-a11y/heading-has-content": "off"
   }
 }

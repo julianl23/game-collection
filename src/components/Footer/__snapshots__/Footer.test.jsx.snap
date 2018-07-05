@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+.c0 {
+  background: #d8d8d8;
+  border: 1px solid #999;
+  border-left: 0;
+  border-right: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+<footer
+  className="c0"
+>
+  © 
+  2018
+   Julian Lord
+</footer>
+`;
