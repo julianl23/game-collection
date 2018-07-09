@@ -18,6 +18,7 @@ const Header = () => {
   const Title = styled.h1`
     font-size: ${props => props.theme.fontSizeLarge};
     margin: 0;
+    font-weight: 500;
   `;
 
   const StyledGamepad = styled(Gamepad)`

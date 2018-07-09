@@ -20,6 +20,7 @@ exports[`Header renders correctly 1`] = `
 
 .c2 {
   margin: 0;
+  font-weight: 500;
 }
 
 .c1 {

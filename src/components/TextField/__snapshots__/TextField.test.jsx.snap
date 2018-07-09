@@ -1,13 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextField renders correctly 1`] = `
-<div>
+.c0 {
+  margin-bottom: 20px;
+}
+
+.c1 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.c2 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 45px;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
   <label
+    className="c1"
     htmlFor="hello"
   >
     Hello
   </label>
   <input
+    className="c2"
     id="hello"
     type="text"
   />

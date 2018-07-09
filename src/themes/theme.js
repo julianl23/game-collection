@@ -9,8 +9,14 @@ const typography = {
   fontSizeXXLarge: "3.75em",
 };
 
+const colors = {
+  borderGray: "#979797",
+  purpleWhite: "#F7FAFE",
+};
+
 const theme = {
   ...typography,
+  ...colors,
 };
 
 export default theme;

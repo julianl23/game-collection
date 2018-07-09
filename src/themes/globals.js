@@ -16,6 +16,10 @@ injectGlobal`
     src: url(${RobotoBold});
   }
 
+  * { 
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     font-family: 'Roboto', sans-serif;

@@ -1,7 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login renders correctly 1`] = `
-<section>
-  It me, the login
+.c0 {
+  grid-column: 2 / span 2;
+}
+
+.c1 {
+  font-weight: 500;
+  text-align: center;
+}
+
+.c2 {
+  margin-bottom: 20px;
+}
+
+.c3 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.c4 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 45px;
+  width: 100%;
+}
+
+.c5 {
+  margin-bottom: 20px;
+}
+
+.c6 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.c7 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 45px;
+  width: 100%;
+}
+
+<section
+  className="c0"
+>
+  <h2
+    className="c1"
+  >
+    Log In
+  </h2>
+  <form
+    action="/"
+    method="POST"
+  >
+    <div
+      className="c2"
+    >
+      <label
+        className="c3"
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        className="c4"
+        id="email"
+        type="email"
+      />
+    </div>
+    <div
+      className="c5"
+    >
+      <label
+        className="c6"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="c7"
+        id="password"
+        type="password"
+      />
+    </div>
+  </form>
 </section>
 `;
