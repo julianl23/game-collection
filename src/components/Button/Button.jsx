@@ -1,16 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-const Button = ({ children, type }) => <button type={type}>{children}</button>;
+const sizes = {
+  small: 25,
+  normal: 36,
+  large: 50,
+};
+
+const buttonStyles = {
+  primary: "#322F6F",
+  secondary: "",
+};
+
+const StyledButton = styled.button`
+  height: ${({ size }) => sizes[size]}px;
+  background: ${({ buttonStyle }) => buttonStyles[buttonStyle]};
+  color: #fff;
+`;
+
+const Button = ({ children, type, className, buttonStyle, size }) => (
+  <StyledButton
+    className={className}
+    type={type}
+    buttonStyle={buttonStyle}
+    size={size}
+  >
+    {children}
+  </StyledButton>
+);
 
 Button.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
+  buttonStyle: PropTypes.oneOf(["primary", "secondary"]),
+  size: PropTypes.oneOf(["small", "normal", "large"]),
 };
 
 Button.defaultProps = {
   children: "",
+  className: "",
   type: "button",
+  buttonStyle: "primary",
+  size: "normal",
 };
 
 export default Button;

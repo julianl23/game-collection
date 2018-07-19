@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const history = require("connect-history-api-fallback");
+const convert = require("koa-connect");
 
 module.exports = {
   entry: [path.resolve(__dirname, "./src/index.jsx")],
@@ -44,4 +46,14 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
+  serve: {
+    // eslint-disable-next-line arrow-parens
+    add: app => {
+      const historyOptions = {
+        // ... see: https://github.com/bripkens/connect-history-api-fallback#options
+      };
+
+      app.use(convert(history(historyOptions)));
+    },
+  },
 };
