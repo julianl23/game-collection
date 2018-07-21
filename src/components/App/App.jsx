@@ -6,6 +6,7 @@ import { ApolloProvider } from "react-apollo";
 import Header from "../Header";
 import Footer from "../Footer";
 import Login from "../Login";
+import Register from "../Register";
 import Home from "../Home";
 import Theme from "../../themes/theme";
 
@@ -34,6 +35,7 @@ const App = () => (
         <Main>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
             <Route path="/" component={Home} />
           </Switch>
         </Main>
