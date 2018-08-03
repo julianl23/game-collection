@@ -12,7 +12,8 @@ const typography = {
 const colors = {
   borderGray: "#979797",
   purpleWhite: "#F7FAFE",
-  backgrondGray: "#C4C4C4",
+  backgroundGray: "#C4C4C4",
+  pinkRed: "#FF4D65",
 };
 
 const theme = {

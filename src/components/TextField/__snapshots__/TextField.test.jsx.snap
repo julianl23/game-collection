@@ -1,5 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TextField displays an error message if one is provided 1`] = `
+.c0 {
+  margin-bottom: 20px;
+}
+
+.c1 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.c2 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 45px;
+  width: 100%;
+}
+
+.c3 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 10px 0 20px;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="hello"
+  >
+    Hello
+  </label>
+  <div
+    className="textfield-wrapper"
+  >
+    <input
+      className="c2"
+      id="hello"
+      name=""
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value="world"
+    />
+  </div>
+  <div
+    className="textfield-error-message"
+    id="hello-error-message"
+  >
+    <p
+      className="c3"
+    >
+      Field is required
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TextField displays the passed in value when one is set 1`] = `
+.c0 {
+  margin-bottom: 20px;
+}
+
+.c1 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.c2 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 45px;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="hello"
+  >
+    Hello
+  </label>
+  <div
+    className="textfield-wrapper"
+  >
+    <input
+      className="c2"
+      id="hello"
+      name=""
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value="world"
+    />
+  </div>
+  
+</div>
+`;
+
 exports[`TextField renders correctly 1`] = `
 .c0 {
   margin-bottom: 20px;
@@ -27,10 +130,19 @@ exports[`TextField renders correctly 1`] = `
   >
     Hello
   </label>
-  <input
-    className="c2"
-    id="hello"
-    type="text"
-  />
+  <div
+    className="textfield-wrapper"
+  >
+    <input
+      className="c2"
+      id="hello"
+      name=""
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  
 </div>
 `;

@@ -9,7 +9,7 @@ const HomeSection = styled.section`
 const CoverImage = styled.img`
   width: 70px;
   height: 93px;
-  background: ${({ theme }) => theme.backgrondGray};
+  background: ${({ theme }) => theme.backgroundGray};
 `;
 
 const RecentlyAdded = styled.div`

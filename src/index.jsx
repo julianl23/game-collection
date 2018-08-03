@@ -8,5 +8,5 @@ export default ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  app // eslint-disable-line comma-dangle
+  app
 );
