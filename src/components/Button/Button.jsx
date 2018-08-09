@@ -19,12 +19,13 @@ const StyledButton = styled.button`
   color: #fff;
 `;
 
-const Button = ({ children, type, className, buttonStyle, size }) => (
+const Button = ({ children, type, className, buttonStyle, size, onClick }) => (
   <StyledButton
     className={className}
     type={type}
     buttonStyle={buttonStyle}
     size={size}
+    onClick={onClick}
   >
     {children}
   </StyledButton>
@@ -36,6 +37,7 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "submit", "reset"]),
   buttonStyle: PropTypes.oneOf(["primary", "secondary"]),
   size: PropTypes.oneOf(["small", "normal", "large"]),
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -44,6 +46,7 @@ Button.defaultProps = {
   type: "button",
   buttonStyle: "primary",
   size: "normal",
+  onClick: null,
 };
 
 export default Button;

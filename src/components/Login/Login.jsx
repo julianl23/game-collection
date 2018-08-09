@@ -3,10 +3,21 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import axios from "axios";
 import { Formik } from "formik";
+import { gql } from "apollo-boost";
+import { Query } from "react-apollo";
+import { Redirect } from "react-router-dom";
 
 import TextField from "../TextField";
 import Button from "../Button";
 import ErrorMessage from "../ErrorMessage";
+
+const GET_CURRENT_USER = gql`
+  {
+    currentUser {
+      _id
+    }
+  }
+`;
 
 const errorStrings = {
   401: "Your credentials are invalid. Please check your email and password and try again.",
@@ -15,7 +26,11 @@ const errorStrings = {
 };
 
 const LoginSection = styled.section`
-  grid-column: 2 / span 2;
+  grid-column: 1 / span 4;
+
+  @media (min-width: 768px) {
+    grid-column: 2 / span 2;
+  }
 `;
 
 const Heading = styled.h2`
@@ -146,7 +161,7 @@ class Login extends Component {
             errorMessage={touched.password && errors.password}
           />
           {errors.loginError && <ErrorMessage message={errors.loginError} />}
-          <LoginButton type="submit" disabled={isSubmitting}>
+          <LoginButton type="submit" disabled={isSubmitting} size="large">
             Submit
           </LoginButton>
         </form>
@@ -157,8 +172,20 @@ class Login extends Component {
   render() {
     return (
       <LoginSection>
-        <Heading>Log In</Heading>
-        {this.formikForm()}
+        <Query query={GET_CURRENT_USER} fetchPolicy="network-only">
+          {({ data }) => {
+            if (data && data.currentUser) {
+              return <Redirect to="/" />;
+            }
+
+            return (
+              <React.Fragment>
+                <Heading>Log In</Heading>
+                {this.formikForm()}
+              </React.Fragment>
+            );
+          }}
+        </Query>
       </LoginSection>
     );
   }
