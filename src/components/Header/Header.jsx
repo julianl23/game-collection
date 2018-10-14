@@ -56,7 +56,7 @@ const LogInLink = styled(Link)`
 const Header = () => (
   <Query query={GET_CURRENT_USER} fetchPolicy="network-only">
     {({ data }) => {
-      const { currentUser } = data;
+      const currentUser = data ? data.currentUser : null;
 
       return (
         <Wrapper>

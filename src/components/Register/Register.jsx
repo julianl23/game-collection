@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { prop } from "styled-tools";
 import { Formik } from "formik";
+import axios from "axios";
+
 import TextField from "../TextField";
 import Button from "../Button";
+import ErrorMessage from "../ErrorMessage";
 
 const errorStrings = {
   generic: "An error has occurred.",
@@ -35,12 +39,47 @@ const RegisterButton = styled(Button)`
 `;
 
 class Register extends Component {
-  handleFormSubmission = e => {
-    e.preventDefault();
-    console.log(e);
+  constructor() {
+    super();
+    this.state = {
+      serverError: null,
+    };
+  }
+
+  handleFormSubmission = async values => {
+    const { history } = this.props;
+
+    this.setState({
+      serverError: null,
+    });
+
+    try {
+      // TODO: Create config layer for getting api urls
+      const registerResult = await axios.put(
+        "http://localhost:3000/api/users",
+        values,
+        {
+          withCredentials: true,
+        }
+      );
+
+      history.push("/");
+    } catch (error) {
+      const responseCode = error.response.status;
+      const errorMessage =
+        responseCode === 409
+          ? "A user with this email already exists"
+          : "Could not create user";
+
+      this.setState({
+        serverError: errorMessage,
+      });
+    }
   };
 
   render() {
+    const { serverError } = this.state;
+
     return (
       <RegisterWrapper>
         <Heading>Register</Heading>
@@ -49,8 +88,8 @@ class Register extends Component {
           initialValues={{
             email: "",
             username: "",
-            firstname: "",
-            lastname: "",
+            firstName: "",
+            lastName: "",
             password: "",
           }}
           validate={values => {
@@ -68,12 +107,12 @@ class Register extends Component {
               errors.username = errorStrings.required;
             }
 
-            if (!values.firstname) {
-              errors.firstname = errorStrings.required;
+            if (!values.firstName) {
+              errors.firstName = errorStrings.required;
             }
 
-            if (!values.lastname) {
-              errors.lastname = errorStrings.required;
+            if (!values.lastName) {
+              errors.lastName = errorStrings.required;
             }
 
             if (!values.password) {
@@ -82,7 +121,7 @@ class Register extends Component {
 
             return errors;
           }}
-          onSubmit={this.handleFormSubmission}
+          onSubmit={values => this.handleFormSubmission(values)}
           render={({
             values,
             errors,
@@ -109,23 +148,26 @@ class Register extends Component {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 labelText="Username"
+                value={values.username}
                 errorMessage={touched.username && errors.username}
               />
               <TextField
-                id="firstname"
-                name="firstname"
+                id="firstName"
+                name="firstName"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 labelText="First Name"
-                errorMessage={touched.firstname && errors.firstname}
+                value={values.firstName}
+                errorMessage={touched.firstName && errors.firstName}
               />
               <TextField
-                id="lastname"
-                name="lastname"
+                id="lastName"
+                name="lastName"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 labelText="Last Name"
-                errorMessage={touched.lastname && errors.lastname}
+                value={values.lastName}
+                errorMessage={touched.lastName && errors.lastName}
               />
               <TextField
                 type="password"
@@ -137,6 +179,7 @@ class Register extends Component {
                 labelText="Password"
                 errorMessage={touched.password && errors.password}
               />
+              {serverError && <ErrorMessage message={serverError} />}
               <RegisterButton
                 type="submit"
                 size="large"
@@ -152,4 +195,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

@@ -9,6 +9,7 @@ import Footer from "../Footer";
 import Login from "../Login";
 import Register from "../Register";
 import Home from "../Home";
+import Search from "../Search";
 import Theme from "../../themes/theme";
 
 // Injext globals into styled components
@@ -44,6 +45,7 @@ const App = () => (
             <Switch>
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/search/:query?" component={Search} />
               <Route path="/" component={Home} />
             </Switch>
           </Main>

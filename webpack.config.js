@@ -47,5 +47,6 @@ module.exports = {
     headers: { "Access-Control-Allow-Origin": "*" },
     historyApiFallback: true,
     allowedHosts: ["localhost:3000"],
+    publicPath: "/",
   },
 };
