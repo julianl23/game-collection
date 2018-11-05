@@ -53,6 +53,13 @@ const LogInLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSizeNormal};
 `;
 
+const HomeLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.bodyCopy};
+  display: flex;
+  align-items: center;
+`;
+
 const Header = () => (
   <Query query={GET_CURRENT_USER} fetchPolicy="network-only">
     {({ data }) => {
@@ -60,8 +67,10 @@ const Header = () => (
 
       return (
         <Wrapper>
-          <StyledGamepad fill="#fff" />
-          <Title>Game Collection</Title>
+          <HomeLink to="/">
+            <StyledGamepad fill="#fff" />
+            <Title>Game Shelf</Title>
+          </HomeLink>
           {!currentUser && (
             <UserLinks>
               <LogInLink to="/login">Log In</LogInLink> /{" "}

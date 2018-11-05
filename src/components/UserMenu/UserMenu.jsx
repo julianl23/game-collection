@@ -89,7 +89,7 @@ class UserMenu extends Component {
     const { isOpen } = this.state;
 
     return (
-      <UserMenuWrapper innerRef={this.menuRef}>
+      <UserMenuWrapper ref={this.menuRef}>
         <UserMenuTrigger type="button" onClick={this.toggleMenu}>
           {currentUser.username[0]}
         </UserMenuTrigger>

@@ -1,13 +1,19 @@
-import { injectGlobal } from "styled-components";
 import RobotoRegular from "../fonts/Roboto-Regular.ttf";
+import RobotoMedium from "../fonts/Roboto-Medium.ttf";
 import RobotoBold from "../fonts/Roboto-Bold.ttf";
 
 // eslint-disable-next-line no-unused-expressions
-injectGlobal`
+const GlobalStyling = `
   @font-face {
     font-family: 'Roboto';
     font-weight: normal
     src: url(${RobotoRegular});
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-weight: 300
+    src: url(${RobotoMedium});
   }
 
   @font-face {
@@ -24,7 +30,8 @@ injectGlobal`
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
+  color: ${({ theme }) => theme.bodyCopy};
   }
 `;
 
-// export default globals;
+export default GlobalStyling;

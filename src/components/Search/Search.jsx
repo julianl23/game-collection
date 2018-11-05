@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 import { ApolloConsumer } from "react-apollo";
+import styled from "styled-components";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import TextField from "../TextField";
 import Button from "../Button";
+import SearchResultItem from "./SearchResultItem";
 import SEARCH from "./Search.query";
+
+const SearchSection = styled.section`
+  grid-column: 1 / span 4;
+`;
+
+const SearchResultsList = styled.ul`
+  padding: 0;
+  list-style-type: none;
+`;
 
 class Search extends Component {
   constructor() {
@@ -14,6 +27,16 @@ class Search extends Component {
     };
   }
 
+  componentDidMount() {
+    const { match } = this.props;
+    if (match.params && match.params.query) {
+      this.setState({
+        query: match.params.query,
+        searchOnFirstOpen: true,
+      });
+    }
+  }
+
   handleChange = e => {
     this.setState({
       query: e.target.value,
@@ -21,7 +44,9 @@ class Search extends Component {
   };
 
   handleSearchSubmit = async (e, client) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
+
+    this.setState({ searchOnFirstOpen: false });
 
     const { query } = this.state;
 
@@ -42,52 +67,48 @@ class Search extends Component {
   };
 
   render() {
-    const { query, results } = this.state;
+    const { query, results, searchOnFirstOpen } = this.state;
 
     return (
       <ApolloConsumer>
-        {client => (
-          <section>
-            <h1>Search</h1>
-            <form
-              action="/search"
-              method="POST"
-              onSubmit={e => this.handleSearchSubmit(e, client)}
-            >
-              <TextField
-                id="query"
-                labelText="Search"
-                value={query}
-                onChange={this.handleChange}
-              />
+        {client => {
+          if (searchOnFirstOpen) {
+            this.handleSearchSubmit(null, client);
+          }
+
+          return (
+            <SearchSection>
+              <h1>Search</h1>
+              <form
+                action="/search"
+                method="POST"
+                onSubmit={e => this.handleSearchSubmit(e, client)}
+              >
+                <TextField
+                  id="query"
+                  labelText="Search"
+                  value={query}
+                  onChange={this.handleChange}
+                />
+                <Button type="submit">Search</Button>
+              </form>
               {results && (
-                <ul>
+                <SearchResultsList>
                   {results.map(game => (
-                    <li key={game._id}>
-                      <img
-                        src={game.cover.url}
-                        alt={`Cover of ${game.title}`}
-                      />
-                      <p>{game.title}</p>
-                      <p>
-                        Developed by{" "}
-                        {game.developer[0] && game.developer[0].name}
-                      </p>
-                      <p>
-                        Published by{" "}
-                        {game.publisher[0] && game.publisher[0].name}
-                      </p>
-                    </li>
+                    <SearchResultItem game={game} key={game._id} />
                   ))}
-                </ul>
+                </SearchResultsList>
               )}
-              <Button type="submit">Search</Button>
-            </form>
-          </section>
-        )}
+            </SearchSection>
+          );
+        }}
       </ApolloConsumer>
     );
   }
 }
 
-export default Search;
+Search.propTypes = {
+  match: PropTypes.object.isRequired,
+};
+
+export default withRouter(Search);

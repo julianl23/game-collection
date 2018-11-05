@@ -1,26 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
 import { Redirect } from "react-router-dom";
 
 import TextField from "../TextField";
 import Button from "../Button";
-// import GameSearch from "./GameSearch.query";
-
-const GET_CURRENT_USER = gql`
-  {
-    currentUser {
-      _id
-      firstName
-      lastName
-      username
-      gameCollection {
-        items
-      }
-    }
-  }
-`;
+import GET_CURRENT_USER from "./GetCurrentUser.query";
 
 const HomeSection = styled.section`
   grid-column: 1 / span 4;

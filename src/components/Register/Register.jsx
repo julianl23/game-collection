@@ -55,13 +55,9 @@ class Register extends Component {
 
     try {
       // TODO: Create config layer for getting api urls
-      const registerResult = await axios.put(
-        "http://localhost:3000/api/users",
-        values,
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.put("http://localhost:3000/api/users", values, {
+        withCredentials: true,
+      });
 
       history.push("/");
     } catch (error) {

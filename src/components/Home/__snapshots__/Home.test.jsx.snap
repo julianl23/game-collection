@@ -18,16 +18,27 @@ exports[`Home renders correctly 1`] = `
   width: 100%;
 }
 
+.c4 {
+  height: 36px;
+  background: #322F6F;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  color: #fff;
+  display: inline-block;
+}
+
 .c0 {
   grid-column: 1 / span 4;
 }
 
-.c5 {
+.c6 {
   width: 70px;
   height: 93px;
 }
 
-.c4 {
+.c5 {
   display: grid;
   grid-template-columns: repeat(4,1fr);
 }
@@ -36,62 +47,83 @@ exports[`Home renders correctly 1`] = `
   className="c0"
 >
   <h2>
-    Median
+    testUser
   </h2>
   <div
     className="user-counts"
   >
     <p>
-      276 items
+      0
+       
+      items
     </p>
     <p>
-      66 wish list
+      0 wish list
     </p>
   </div>
   <div
     className="search"
   >
-    <div
-      className="c1"
+    <form
+      action="/search"
+      method="POST"
+      onSubmit={[Function]}
     >
-      <label
-        className="c2"
-        htmlFor="search"
+      <div
+        className="c1"
+      >
+        <label
+          className="c2"
+          htmlFor="query"
+        >
+          Search
+        </label>
+        <div
+          className="textfield-wrapper"
+        >
+          <input
+            className="c3"
+            id="query"
+            name=""
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+        
+      </div>
+      <button
+        className="c4"
+        onClick={null}
+        size="normal"
+        type="submit"
       >
         Search
-      </label>
-      <div
-        className="textfield-wrapper"
-      >
-        <input
-          className="c3"
-          id="search"
-          name=""
-          onBlur={[Function]}
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-      
+      </button>
+    </form>
+  </div>
+  <section>
+    <h3>
+      Recently Added
+    </h3>
+    <div
+      className="c5"
+    >
+      <img
+        className="c6"
+      />
+      <img
+        className="c6"
+      />
+      <img
+        className="c6"
+      />
+      <img
+        className="c6"
+      />
     </div>
-  </div>
-  <div
-    className="c4"
-  >
-    <img
-      className="c5"
-    />
-    <img
-      className="c5"
-    />
-    <img
-      className="c5"
-    />
-    <img
-      className="c5"
-    />
-  </div>
+  </section>
   <div
     className="friend-activity"
   >

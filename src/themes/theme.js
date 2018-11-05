@@ -7,6 +7,7 @@ const typography = {
   fontSizeLarge: "1.5em",
   fontSizeXLarge: "2.25em",
   fontSizeXXLarge: "3.75em",
+  fontFamily: "'Roboto', sans-serif",
 };
 
 const colors = {
@@ -17,6 +18,7 @@ const colors = {
   backgroundGray: "#d8d8d8",
   deepPurple: "#322F6F",
   white: "#fff",
+  bodyCopy: "#222629",
 };
 
 const theme = {

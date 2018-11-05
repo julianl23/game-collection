@@ -4,11 +4,17 @@ exports[`Button renders correctly 1`] = `
 .c0 {
   height: 36px;
   background: #322F6F;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
   color: #fff;
+  display: inline-block;
 }
 
 <button
   className="c0"
+  onClick={null}
   size="normal"
   type="button"
 >

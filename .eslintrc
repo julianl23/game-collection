@@ -22,6 +22,9 @@
     "react/jsx-one-expression-per-line": "off",
     "react/forbid-prop-types": "off",
     "prettier/prettier": "error",
-    "jsx-a11y/heading-has-content": "off"
+    "jsx-a11y/heading-has-content": "off",
+    "no-underscore-dangle": "off",
+    "jsx-a11y/label-has-for": "warn",
+    "jsx-a11y/label-has-associated-control": "warn"
   }
 }

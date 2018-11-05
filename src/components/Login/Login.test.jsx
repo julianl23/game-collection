@@ -1,15 +1,19 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
+import { MockedProvider } from "react-apollo/test-utils";
 import { ThemeProvider } from "styled-components";
 import { shallow } from "enzyme";
+
 import Login from "./Login";
 
 describe("Login", () => {
   it("renders correctly", () => {
     const instance = TestRenderer.create(
-      <ThemeProvider theme={{}}>
-        <Login />
-      </ThemeProvider>
+      <MockedProvider>
+        <ThemeProvider theme={{}}>
+          <Login />
+        </ThemeProvider>
+      </MockedProvider>
     );
     expect(instance.toJSON()).toMatchSnapshot();
   });
