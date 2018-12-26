@@ -11,7 +11,12 @@ const sizes = {
 
 const buttonStyles = {
   primary: "#322F6F",
-  secondary: "",
+  secondary: "#F7FAFE",
+};
+
+const textStyles = {
+  primary: "#fff",
+  secondary: "#222629",
 };
 
 const StyledButton = styled.button`
@@ -22,7 +27,8 @@ const StyledButton = styled.button`
   font-size: 14px;
   font-weight: 300;
   line-height: 16px;
-  color: #fff;
+  color: ${({ buttonStyle }) => textStyles[buttonStyle]};
+  cursor: pointer;
   ${switchProp("block", {
     true: css`
       display: block;

@@ -9,6 +9,7 @@ exports[`SearchResultItem renders correctly 1`] = `
   font-weight: 300;
   line-height: 16px;
   color: #fff;
+  cursor: pointer;
   display: block;
   width: 100%;
 }

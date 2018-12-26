@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { theme } from "styled-tools";
 
 import Button from "../Button";
-import { PlusSquare, Times } from "../Icons";
+import AddItemDetailView from "./AddItemDetailView";
+import { PlusSquare } from "../Icons";
 
 const Item = styled.li`
   margin-bottom: 48px;
@@ -46,43 +47,20 @@ const Platforms = styled.p`
   margin: 20px 0 0;
 `;
 
-const PlatformSelectWrapper = styled.div`
-  display: flex;
-  align-items: flex-end;
-
-  button {
-    flex-shrink: 0;
-  }
-`;
-
-const PlatformSelectLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-  flex: 1;
-`;
-
-const PlatformSelect = styled.select`
-  height: 36px;
-  background: ${theme("purpleWhite")};
-  margin: 10px 0 0;
-`;
-
-const CloseButton = styled.button`
-  -webkit-appearance: none;
-  background: transparent;
-  border: 0;
-  align-self: flex-start;
-  padding: 5px;
-  cursor: pointer;
-`;
+// const CancelButton = styled.button`
+//   -webkit-appearance: none;
+//   background: transparent;
+//   border: 0;
+//   align-self: flex-start;
+//   padding: 5px;
+//   cursor: pointer;
+// `;
 
 class SearchResultItem extends Component {
   constructor() {
     super();
     this.state = {
       expanded: false,
-      selectedPlatform: null,
     };
   }
 
@@ -133,45 +111,21 @@ class SearchResultItem extends Component {
   };
 
   handleToggleAddView = () => {
-    const {
-      game: { platforms },
-    } = this.props;
     const { expanded } = this.state;
-
-    if (platforms.length === 1) {
-      this.setState(
-        {
-          selectedPlatform: platforms[0]._id,
-        },
-        () => {
-          this.handleAddPlatform();
-        }
-      );
-    } else {
-      this.setState({
-        expanded: !expanded,
-      });
-    }
-  };
-
-  handlePlatformSelect = e => {
-    const platform = e.target.value;
     this.setState({
-      selectedPlatform: platform,
+      expanded: !expanded,
     });
   };
 
-  handleAddPlatform = () => {
-    const { selectedPlatform } = this.state;
-    console.log(selectedPlatform);
+  handleAddGame = collectionItem => {
+    console.log(collectionItem);
   };
 
   render() {
     const { game } = this.props;
     const { expanded } = this.state;
 
-    const { _id, cover, title, developer, publisher, platforms } = game;
-    const selectId = `platform-select-${_id}`;
+    const { cover, title, developer, publisher, platforms } = game;
 
     return (
       <Item>
@@ -189,28 +143,11 @@ class SearchResultItem extends Component {
           </ContentSection>
         </SearchResultInfo>
         {expanded && (
-          <PlatformSelectWrapper>
-            <PlatformSelectLabel htmlFor={selectId}>
-              Platform
-              <PlatformSelect
-                id={selectId}
-                onChange={this.handlePlatformSelect}
-              >
-                <option>Select</option>
-                {platforms.map(platform => (
-                  <option key={platform._id} value={platform._id}>
-                    {platform.name}
-                  </option>
-                ))}
-              </PlatformSelect>
-            </PlatformSelectLabel>
-            <AddButton onClick={this.handleAddPlatform}>
-              <PlusSquare />Add
-            </AddButton>
-            <CloseButton type="button" onClick={this.handleToggleAddView}>
-              <Times />
-            </CloseButton>
-          </PlatformSelectWrapper>
+          <AddItemDetailView
+            game={game}
+            handleAddGame={this.handleAddGame}
+            handleToggleAddView={this.handleToggleAddView}
+          />
         )}
         {!expanded && (
           <AddButton block onClick={this.handleToggleAddView}>

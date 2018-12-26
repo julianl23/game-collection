@@ -59,8 +59,6 @@ class Search extends Component {
       this.setState({
         results: data.games,
       });
-
-      console.log(data);
     } catch (err) {
       console.log(err);
     }

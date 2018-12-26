@@ -1,6 +1,7 @@
 import React from "react";
-import TestRenderer from "react-test-renderer";
 import { MockedProvider } from "react-apollo/test-utils";
+import { mount } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
 import wait from "waait";
 
 import Home from "./Home";
@@ -34,14 +35,15 @@ const getMockData = ({ currentUser = {} }) => {
 describe("Home", () => {
   it("renders correctly", async () => {
     const mocks = getMockData({});
-    const instance = TestRenderer.create(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Home />
-      </MockedProvider>
+    const wrapper = mount(
+      <BrowserRouter>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Home />
+        </MockedProvider>
+      </BrowserRouter>
     );
 
     await wait(50); // wait for response
-
-    expect(instance.toJSON()).toMatchSnapshot();
+    expect(wrapper.find(Home).length).toBe(1);
   });
 });

@@ -2,26 +2,26 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  margin-bottom: 20px;
+const StyledTextArea = styled.textarea`
+  display: block;
+  border: 1px solid ${({ theme }) => theme.borderGray};
+  background: ${({ theme }) => theme.purpleWhite};
+  font-size: ${({ theme }) => theme.fontSizeNormal};
+  padding: 15px 10px;
+  height: 90px;
+  width: 100%;
 `;
+
+StyledTextArea.displayName = "TextArea";
 
 const Label = styled.label`
   display: block;
   margin-bottom: 10px;
 `;
 
-const Input = styled.input`
-  display: block;
-  border: 1px solid ${({ theme }) => theme.borderGray};
-  background: ${({ theme }) => theme.purpleWhite};
-  font-size: ${({ theme }) => theme.fontSizeNormal};
-  padding: 15px 10px;
-  height: 45px;
-  width: 100%;
+const Wrapper = styled.div`
+  margin-bottom: 20px;
 `;
-
-Input.displayName = "Input";
 
 const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.pinkRed};
@@ -30,7 +30,7 @@ const ErrorMessage = styled.p`
   margin: 10px 0 20px;
 `;
 
-class TextField extends Component {
+class TextArea extends Component {
   handleChange = event => {
     const { onChange } = this.props;
     onChange(event);
@@ -42,29 +42,18 @@ class TextField extends Component {
   };
 
   render() {
-    const {
-      id,
-      labelText,
-      type,
-      className,
-      value,
-      name,
-      errorMessage,
-    } = this.props;
+    const { id, value, name, className, labelText, errorMessage } = this.props;
 
     return (
       <Wrapper className={className}>
         {labelText && <Label htmlFor={id}>{labelText}</Label>}
-        <div className="textfield-wrapper">
-          <Input
-            id={id}
-            name={name}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            type={type}
-            value={value}
-          />
-        </div>
+        <StyledTextArea
+          id={id}
+          value={value}
+          name={name}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+        />
         {errorMessage && (
           <div id={`${id}-error-message`} className="textfield-error-message">
             <ErrorMessage>{errorMessage}</ErrorMessage>
@@ -75,26 +64,24 @@ class TextField extends Component {
   }
 }
 
-TextField.propTypes = {
+TextArea.propTypes = {
   id: PropTypes.string.isRequired,
-  labelText: PropTypes.string.isRequired,
-  type: PropTypes.string,
   className: PropTypes.string,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  name: PropTypes.string,
+  labelText: PropTypes.string,
   errorMessage: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
-TextField.defaultProps = {
-  type: "text",
+TextArea.defaultProps = {
+  value: null,
   className: "",
-  onBlur: () => {},
-  onChange: () => {},
-  value: "",
-  name: "",
+  labelText: "",
   errorMessage: "",
+  onChange: () => {},
+  onBlur: () => {},
 };
 
-export default TextField;
+export default TextArea;

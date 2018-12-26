@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea displays the passed in value when one is set 1`] = `
+.c1 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 90px;
+  width: 100%;
+}
+
+.c0 {
+  margin-bottom: 20px;
+}
+
+<div
+  className="c0"
+>
+  
+  <textarea
+    className="c1"
+    id="hello"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="world"
+  />
+  
+</div>
+`;
+
+exports[`TextArea renders correctly 1`] = `
+.c1 {
+  display: block;
+  border: 1px solid;
+  padding: 15px 10px;
+  height: 90px;
+  width: 100%;
+}
+
+.c0 {
+  margin-bottom: 20px;
+}
+
+<div
+  className="c0"
+>
+  
+  <textarea
+    className="c1"
+    id="hello"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value={null}
+  />
+  
+</div>
+`;

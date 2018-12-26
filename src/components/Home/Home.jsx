@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Query } from "react-apollo";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import TextField from "../TextField";
 import Button from "../Button";
@@ -38,8 +39,10 @@ class Home extends Component {
 
   handleSearchSubmit = e => {
     e.preventDefault();
+    const { history } = this.props;
     const { query } = this.state;
-    console.log("the query", query);
+
+    history.push(`/search/${query}`);
   };
 
   handleChange = e => {
@@ -122,4 +125,8 @@ class Home extends Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(Home);
