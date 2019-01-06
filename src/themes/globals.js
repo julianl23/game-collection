@@ -30,7 +30,7 @@ const GlobalStyling = `
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-  color: ${({ theme }) => theme.bodyCopy};
+    color: ${({ theme }) => theme.bodyCopy};
   }
 `;
 

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { theme } from "styled-tools";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import Button from "../Button";
 import AddItemDetailView from "./AddItemDetailView";
 import { PlusSquare } from "../Icons";
+import Snackbar from "../Snackbar";
 
 const Item = styled.li`
   margin-bottom: 48px;
@@ -47,20 +49,12 @@ const Platforms = styled.p`
   margin: 20px 0 0;
 `;
 
-// const CancelButton = styled.button`
-//   -webkit-appearance: none;
-//   background: transparent;
-//   border: 0;
-//   align-self: flex-start;
-//   padding: 5px;
-//   cursor: pointer;
-// `;
-
 class SearchResultItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       expanded: false,
+      itemAdded: false,
     };
   }
 
@@ -117,13 +111,26 @@ class SearchResultItem extends Component {
     });
   };
 
-  handleAddGame = collectionItem => {
-    console.log(collectionItem);
+  handleItemAdded = () => {
+    this.setState(
+      {
+        itemAdded: true,
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({
+            itemAdded: false,
+          });
+        }, 3000);
+      }
+    );
+
+    this.handleToggleAddView();
   };
 
   render() {
     const { game } = this.props;
-    const { expanded } = this.state;
+    const { expanded, itemAdded } = this.state;
 
     const { cover, title, developer, publisher, platforms } = game;
 
@@ -142,10 +149,24 @@ class SearchResultItem extends Component {
             {this.renderPlatformList(platforms)}
           </ContentSection>
         </SearchResultInfo>
+        <ReactCSSTransitionGroup
+          transitionName="snackbar-fade"
+          transitionAppear
+          transitionAppearTimeout={250}
+          transitionEnterTimeout={250}
+          transitionLeave
+          transitionLeaveTimeout={500}
+        >
+          {itemAdded && (
+            <Snackbar key={0}>
+              <em>{title}</em> has been added to your collection.
+            </Snackbar>
+          )}
+        </ReactCSSTransitionGroup>
         {expanded && (
           <AddItemDetailView
             game={game}
-            handleAddGame={this.handleAddGame}
+            handleItemAdded={this.handleItemAdded}
             handleToggleAddView={this.handleToggleAddView}
           />
         )}

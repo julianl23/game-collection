@@ -21,7 +21,7 @@ exports[`Footer renders correctly 1`] = `
   className="c0"
 >
   © 
-  2018
+  2019
    Julian Lord
 </footer>
 `;

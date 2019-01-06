@@ -22,11 +22,18 @@ const ErrorMessage = styled.p`
   margin: 10px 0 20px;
 `;
 
-const Checkbox = ({ className, id, labelText, errorMessage, ...rest }) => (
+const Checkbox = ({
+  className,
+  id,
+  labelText,
+  errorMessage,
+  checked,
+  ...rest
+}) => (
   <Wrapper className={className}>
     <Label htmlFor={id}>
       {labelText}
-      <Input type="checkbox" {...rest} />
+      <Input type="checkbox" checked={checked} {...rest} />
     </Label>
     {errorMessage && (
       <div

@@ -102,6 +102,7 @@ exports[`SearchResultItem renders correctly 1`] = `
       </p>
     </div>
   </div>
+  <span />
   <button
     className="c6 c7"
     onClick={[Function]}
