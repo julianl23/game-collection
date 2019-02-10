@@ -19,8 +19,8 @@ const SearchResultsList = styled.ul`
 `;
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       query: "",
       results: null,
@@ -84,8 +84,8 @@ class Search extends Component {
               >
                 <TextField
                   id="query"
-                  labelText="Search"
                   value={query}
+                  labelText=""
                   onChange={this.handleChange}
                 />
                 <Button type="submit">Search</Button>
