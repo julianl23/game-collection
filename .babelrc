@@ -1,9 +1,9 @@
 {
   "plugins": [
-    "transform-runtime",
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    "transform-async-to-generator",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-async-to-generator",
     [
       "babel-plugin-styled-components",
       {
@@ -13,13 +13,13 @@
   ],
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "browsers": ["last 2 versions", "safari >= 7"]
         }
       }
     ],
-    "react"
+    "@babel/preset-react"
   ]
 }
