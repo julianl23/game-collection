@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
+
 import { Gamepad } from "../Icons";
 import UserMenu from "../UserMenu";
 
@@ -60,29 +61,31 @@ const HomeLink = styled(Link)`
   align-items: center;
 `;
 
-const Header = () => (
-  <Query query={GET_CURRENT_USER} fetchPolicy="network-only">
-    {({ data }) => {
-      const currentUser = data ? data.currentUser : null;
+const Header = () => {
+  return (
+    <Query query={GET_CURRENT_USER} fetchPolicy="network-only">
+      {({ data }) => {
+        const currentUser = data ? data.currentUser : null;
 
-      return (
-        <Wrapper>
-          <HomeLink to="/">
-            <StyledGamepad fill="#fff" />
-            <Title>Game Shelf</Title>
-          </HomeLink>
-          {!currentUser && (
-            <UserLinks>
-              <LogInLink to="/login">Log In</LogInLink> /{" "}
-              <LogInLink to="/register">Register</LogInLink>
-            </UserLinks>
-          )}
+        return (
+          <Wrapper>
+            <HomeLink to="/">
+              <StyledGamepad fill="#fff" />
+              <Title>Game Shelf</Title>
+            </HomeLink>
+            {!currentUser && (
+              <UserLinks>
+                <LogInLink to="/login">Log In</LogInLink> /{" "}
+                <LogInLink to="/register">Register</LogInLink>
+              </UserLinks>
+            )}
 
-          {currentUser && <UserMenu currentUser={currentUser} />}
-        </Wrapper>
-      );
-    }}
-  </Query>
-);
+            {currentUser && <UserMenu currentUser={currentUser} />}
+          </Wrapper>
+        );
+      }}
+    </Query>
+  );
+};
 
 export default Header;

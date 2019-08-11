@@ -8,7 +8,10 @@ const GET_CURRENT_USER = gql`
       lastName
       username
       gameCollection {
-        items
+        _id
+        items {
+          _id
+        }
       }
     }
   }

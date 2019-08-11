@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { switchProp } from "styled-tools";
 
+import theme from "../../themes/theme";
+
 const sizes = {
   small: 25,
   normal: 36,
@@ -10,20 +12,22 @@ const sizes = {
 };
 
 const buttonStyles = {
-  primary: "#322F6F",
-  secondary: "#F7FAFE",
+  primary: theme.deepPurple,
+  secondary: theme.purpleWhite,
+  turquoise: theme.turquoise,
 };
 
 const textStyles = {
-  primary: "#fff",
-  secondary: "#222629",
+  primary: theme.white,
+  secondary: theme.bodyCopy,
+  turquoise: theme.deepPurple,
 };
 
 const StyledButton = styled.button`
   height: ${({ size }) => sizes[size]}px;
   background: ${({ buttonStyle }) => buttonStyles[buttonStyle]};
   border-radius: 3px;
-  font-family: ${({ theme }) => theme.fontFamily};
+  font-family: ${props => props.theme.fontFamily};
   font-size: 14px;
   font-weight: 300;
   line-height: 16px;
@@ -65,7 +69,7 @@ Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
-  buttonStyle: PropTypes.oneOf(["primary", "secondary"]),
+  buttonStyle: PropTypes.oneOf(["primary", "secondary", "turquoise"]),
   size: PropTypes.oneOf(["small", "normal", "large"]),
   onClick: PropTypes.func,
   block: PropTypes.bool,

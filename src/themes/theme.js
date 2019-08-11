@@ -19,6 +19,7 @@ const colors = {
   deepPurple: "#322F6F",
   white: "#fff",
   bodyCopy: "#222629",
+  turquoise: "#00E7C2",
 };
 
 const theme = {

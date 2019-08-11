@@ -13,7 +13,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "jest", "prettier", "babel"],
+  "plugins": ["react", "jest", "prettier", "babel", "react-hooks"],
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
@@ -25,6 +25,7 @@
     "jsx-a11y/heading-has-content": "off",
     "no-underscore-dangle": "off",
     "jsx-a11y/label-has-for": "warn",
-    "jsx-a11y/label-has-associated-control": "warn"
+    "jsx-a11y/label-has-associated-control": "warn",
+    "react-hooks/rules-of-hooks": "error"
   }
 }

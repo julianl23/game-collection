@@ -132,12 +132,21 @@ class SearchResultItem extends Component {
     const { game } = this.props;
     const { expanded, itemAdded } = this.state;
 
-    const { cover, title, developer, publisher, platforms } = game;
+    const {
+      cover,
+      title,
+      developer,
+      publisher,
+      platforms,
+      inCollection,
+    } = game;
 
     return (
       <Item>
         <SearchResultInfo>
-          <img src={cover.url} alt={`Cover of ${title}`} />
+          {cover && cover.url && (
+            <img src={cover.url} alt={`Cover of ${title}`} />
+          )}
           <ContentSection>
             <Title>{title}</Title>
             <Companies>
@@ -163,16 +172,22 @@ class SearchResultItem extends Component {
             </Snackbar>
           )}
         </ReactCSSTransitionGroup>
-        {expanded && (
+        {inCollection && (
+          <Button block buttonStyle="turquoise">
+            In your collection
+          </Button>
+        )}
+        {expanded && !inCollection && (
           <AddItemDetailView
             game={game}
             handleItemAdded={this.handleItemAdded}
             handleToggleAddView={this.handleToggleAddView}
           />
         )}
-        {!expanded && (
+        {!expanded && !inCollection && (
           <AddButton block onClick={this.handleToggleAddView}>
-            <PlusSquare />Add to my collection
+            <PlusSquare />
+            Add to my collection
           </AddButton>
         )}
       </Item>

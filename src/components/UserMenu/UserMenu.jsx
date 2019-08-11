@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes, { instanceOf } from "prop-types";
 import styled from "styled-components";
 import { withCookies, Cookies } from "react-cookie";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { prop, ifProp } from "styled-tools";
 import Button from "../Button";
 
@@ -96,7 +96,9 @@ class UserMenu extends Component {
         <Menu open={isOpen}>
           <div>{currentUser.username}</div>
           <MenuList>
-            <MenuListItem>Collection</MenuListItem>
+            <MenuListItem>
+              <Link to="/collection">Collection</Link>
+            </MenuListItem>
             <MenuListItem>Wish List</MenuListItem>
             <MenuListItem>
               <Button onClick={this.handleLogOut} size="small">

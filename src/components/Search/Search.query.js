@@ -5,6 +5,7 @@ const SEARCH = gql`
     games(query: $query) {
       _id
       title
+      inCollection
       developer {
         _id
         name
@@ -33,7 +34,9 @@ const SEARCH = gql`
         width
         height
       }
-      gameModes
+      gameModes {
+        name
+      }
       multiplayerModes {
         platform {
           _id

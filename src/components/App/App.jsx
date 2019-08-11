@@ -11,6 +11,7 @@ import Login from "../Login";
 import Register from "../Register";
 import Home from "../Home";
 import Search from "../Search";
+import Collection from "../Collection";
 import Theme from "../../themes/theme";
 import GlobalStyling from "../../themes/globals";
 
@@ -48,6 +49,8 @@ const App = () => (
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/search/:query?" component={Search} />
+              <Route path="/collection" component={Collection} />
+              <Route path="/:userId/collection" component={Collection} />
               <Route path="/" component={Home} />
             </Switch>
           </Main>

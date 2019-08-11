@@ -84,7 +84,7 @@ class AddItemDetailView extends Component {
           input: {
             _id: game._id,
             platform:
-              game.platforms.length === 1 ? game.platforms[0] : platform,
+              game.platforms.length === 1 ? game.platforms[0]._id : platform,
             note: {
               text: notes,
               isPrivate: noteprivate,

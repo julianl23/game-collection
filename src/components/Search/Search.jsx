@@ -43,6 +43,13 @@ class Search extends Component {
     });
   };
 
+  handleFormSubmit = (e, client) => {
+    const { query } = this.state;
+    const { history } = this.props;
+    history.push(`/search/${query}`);
+    this.handleSearchSubmit(e, client);
+  };
+
   handleSearchSubmit = async (e, client) => {
     if (e) e.preventDefault();
 
@@ -80,7 +87,7 @@ class Search extends Component {
               <form
                 action="/search"
                 method="POST"
-                onSubmit={e => this.handleSearchSubmit(e, client)}
+                onSubmit={e => this.handleFormSubmit(e, client)}
               >
                 <TextField
                   id="query"
@@ -107,6 +114,7 @@ class Search extends Component {
 
 Search.propTypes = {
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default withRouter(Search);
